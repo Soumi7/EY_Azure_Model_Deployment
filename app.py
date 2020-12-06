@@ -2,12 +2,17 @@ from flask import Flask, request, jsonify, render_template, url_for
 import tensorflow as tf
 import os
 import numpy as np
-from bert.tokenization.bert_tokenization import FullTokenizer
 #from tensorflow import keras
+#import bert
+#from bert.tokenization.bert_tokenization import FullTokenizer
+
+app = Flask(__name__)
+
+'''
+
 bert_ckpt_dir=""
 tokenizer = FullTokenizer(vocab_file="vocab.txt")
 
-app = Flask(__name__)
 
 sentences = [
   "we are studying for exam", "i dont know"
@@ -24,24 +29,31 @@ model = tf.keras.models.load_model('saved_model/ey_model')
 
 predictions = model.predict(pred_token_ids).argmax(axis=-1)
 
+classes = ['Financial Reports', 'Case Study', 'Coding Guidelines']
+
 for text, label in zip(sentences, predictions):
   print("text:", text, "\nintent:", classes[label])
   print()
 
+'''
 @app.route('/')
 def home():
     return 'Hello World'
 
-'''
+
     
-@app.route('/predict_api','<list(str):pred_token_ids>',methods=['POST','GET'])
+@app.route('/predict_api',methods=['POST','GET'])
 def predict_api():
-    
-    #For direct API calls trought request
-    
-    predictions = model.predict(pred_token_ids).argmax(axis=-1)
+    request_json = request.get_json()
+    sentences = request_json.get('sentences')
+    for i in sentences:
+      print(i)
+
+    predictions = [1,0,0,1]
+
     return jsonify({'predictions': predictions})
-'''
+
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    #app.run(debug=True)
+    app.run(host='0.0.0.0',port=80)
