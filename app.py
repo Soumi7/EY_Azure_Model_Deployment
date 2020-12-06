@@ -19,7 +19,7 @@ def home():
 def list_post():
     json_body = request.get_json()
     print(json_body[0])
-    print(json_body[1])
+    #print(json_body[1])
 
     predictions = model.predict(json_body).argmax(axis=-1)
     #predictions = 2 * json_body[0]    
