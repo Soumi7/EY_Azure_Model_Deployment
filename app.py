@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, render_template, url_for
 import tensorflow as tf
-from tensorflow import keras
+#from tensorflow import keras
 
 app = Flask(__name__)
 model = tf.keras.models.load_model('./saved_model/ey_model')
@@ -9,7 +9,7 @@ model = tf.keras.models.load_model('./saved_model/ey_model')
 def home():
     return 'Hello World'
     
-@app.route(<list(str):pred_token_ids>,/predict_api',methods=['POST'])
+@app.route('/predict_api','<list(str):pred_token_ids>',methods=['POST','GET'])
 def predict_api():
     '''
     For direct API calls trought request
