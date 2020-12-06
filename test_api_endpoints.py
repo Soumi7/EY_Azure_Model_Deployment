@@ -31,4 +31,5 @@ data = r.json()
 
 
 print(r)
-print(r['predictions'])
+print(data)
+print(data['results'])

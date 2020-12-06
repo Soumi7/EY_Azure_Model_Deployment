@@ -22,15 +22,16 @@ def list_post():
     #print(json_body[1])
 
     predictions = model.predict(json_body).argmax(axis=-1)
+    print(predictions)
     #predictions = 2 * json_body[0]    
     # * this is show query params needs to parsed manually
     #print((request.query_string).decode("utf-8"))
+    #l={'predictions':list(predictions)}
+    predictions = list(predictions)
+    for i in range(0,len(predictions)) :
+        predictions[i] = int(predictions[i])      
 
-
-    return {
-        "predictions": predictions
-    }
-
+    return jsonify(results = predictions)
 
 if __name__ == '__main__':
     #app.run(debug=True)
