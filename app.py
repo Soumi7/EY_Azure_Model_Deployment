@@ -16,7 +16,6 @@ def home():
 @app.route('/predict_api', methods=["POST"])
 def list_post():
     json_body = request.get_json()
-    print(json_body[0])
     #print(json_body[1])
 
     predictions = model.predict(json_body).argmax(axis=-1)
@@ -32,6 +31,6 @@ def list_post():
     return jsonify(results = predictions)
 
 if __name__ == '__main__':
-    app.run(debug=True)
-    #app.run(host='0.0.0.0',port=80)
+    #app.run(debug=True)
+    app.run(host='0.0.0.0',port=80)
 
