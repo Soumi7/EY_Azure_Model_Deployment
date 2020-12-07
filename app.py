@@ -2,10 +2,8 @@ from flask import Flask, request, jsonify, render_template, url_for
 import tensorflow as tf
 import os
 import numpy as np
-import json
 app = Flask(__name__)
-#from tensorflow import keras
-#import bert
+
 
 model = tf.keras.models.load_model('saved_model/ey_model')
 
